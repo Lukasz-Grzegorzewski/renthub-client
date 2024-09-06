@@ -25,6 +25,7 @@ import * as Yup from "yup";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/components/utils/toastHelper";
 import CategorySelect from "../categories/CategorySelect";
+import { typePictureRelation } from "@/types/IPicture";
 
 const ProductForm = (): React.ReactNode => {
   const { lightBlueColor, hoverBlueColor } = new VariablesColors();
@@ -64,9 +65,11 @@ const ProductForm = (): React.ReactNode => {
         let pictureId = null;
         if (picture) {
           const formData = new FormData();
+          const type: typePictureRelation = "productReference";
+          formData.append("type", type);
           formData.append("file", picture);
           const { data } = await axios.post(
-            `${process.env.NEXT_PUBLIC_PATH_IMAGE}`,
+            `${process.env.NEXT_PUBLIC_PATH_IMAGE}/images`,
             formData,
             {
               withCredentials: true,

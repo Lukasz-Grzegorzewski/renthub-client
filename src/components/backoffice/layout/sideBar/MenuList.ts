@@ -17,11 +17,17 @@ export const menuItems = [
         href: "/renthub-backoffice/users-list",
       },
       {
-        id: "users-roles",
-        text: "Rôles",
-        icon: AssignmentIcon,
-        href: "/renthub-backoffice/users-roles",
+        id: "users-create",
+        text: "Créer un account",
+        icon: AddIcon,
+        href: "/renthub-backoffice/user-form/newUser",
       },
+      // {
+      //   id: "users-roles",
+      //   text: "Rôles",
+      //   icon: AssignmentIcon,
+      //   href: "/renthub-backoffice/users-roles",
+      // },
     ],
   },
   {
@@ -48,12 +54,12 @@ export const menuItems = [
     text: "Gestion des produits",
     icon: CategoryIcon,
     subMenus: [
-      {
-        id: "produits-list",
-        text: "Produits",
-        icon: CategoryIcon,
-        href: "/renthub-backoffice/produits",
-      },
+      // {
+      //   id: "produits-list",
+      //   text: "Produits",
+      //   icon: CategoryIcon,
+      //   href: "/renthub-backoffice/produits",
+      // },
       {
         id: "produits-create",
         text: "Créer un produit",
@@ -67,12 +73,12 @@ export const menuItems = [
     text: "Gestion des stocks",
     icon: CategoryIcon,
     subMenus: [
-      {
-        id: "stocks-list",
-        text: "Stocks",
-        icon: CategoryIcon,
-        href: "/renthub-backoffice/stocks",
-      },
+      // {
+      //   id: "stocks-list",
+      //   text: "Stocks",
+      //   icon: CategoryIcon,
+      //   href: "/renthub-backoffice/stocks",
+      // },
       {
         id: "stocks-create",
         text: "Ajouter des stocks",

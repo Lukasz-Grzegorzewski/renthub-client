@@ -2,6 +2,7 @@ import {
   AppBar,
   Box,
   Button,
+  CardMedia,
   Container,
   IconButton,
   Toolbar,
@@ -19,8 +20,7 @@ import { useUserContext } from "@/context/UserContext";
 import { mutationSignOut } from "@/graphql/user/mutationSignOut";
 
 function Navbar(): React.ReactNode {
-  const [globalFilterValue, setGlobalFilterValue] =
-    React.useState<string>(""); /* global filter for search field */
+  const [query, setQuery] = React.useState<string>("");
   const router = useRouter();
   const { orangeColor } = new VariablesColors();
 
@@ -53,11 +53,12 @@ function Navbar(): React.ReactNode {
 
   const pages = user ? pages_connected : pages_notConnected;
 
-  const HandleMenuCategoriesClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMenuCategoriesClick = (event: React.MouseEvent<HTMLElement>) => {
     setShowMenuCategories(!showMenuCategories);
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
   const handleMenuCategoriesClose = () => {
+    setShowMenuCategories(!showMenuCategories);
     setAnchorEl(null);
   };
 
@@ -74,12 +75,16 @@ function Navbar(): React.ReactNode {
               gap={2}
               sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
             >
-              <Image
-                src={"/images/renthub-logo.png"}
-                alt="logo"
-                width={201}
-                height={38.74}
-                style={{ cursor: "pointer" }}
+              <CardMedia
+                component="img"
+                image={"/images/renthub-logo.png"}
+                alt="Renthub Logo"
+                sx={{
+                  width: 201,
+                  height: 38.74,
+                  cursor: "pointer",
+                  alignSelf: "center",
+                }}
                 onClick={() => {
                   router.push("/");
                 }}
@@ -95,7 +100,7 @@ function Navbar(): React.ReactNode {
                 }}
                 variant="contained"
                 size="large"
-                onClick={HandleMenuCategoriesClick}
+                onClick={handleMenuCategoriesClick}
               >
                 Nos matériels
               </Button>
@@ -126,7 +131,7 @@ function Navbar(): React.ReactNode {
                 sx={{
                   color: orangeColor,
                 }}
-                onClick={HandleMenuCategoriesClick}
+                onClick={handleMenuCategoriesClick}
               >
                 <ExpandCircleDownOutlinedIcon fontSize="inherit" />
               </IconButton>
@@ -136,6 +141,8 @@ function Navbar(): React.ReactNode {
               backgroundColor="white"
               borderColor="white"
               colorText="orange"
+              query={query}
+              setQuery={setQuery}
             />
 
             <Box

@@ -1,12 +1,10 @@
 import LayoutFull from "@/components/layout/LayoutFull";
 import { IProductReference } from "@/types/IProductReference";
 import { useQuery } from "@apollo/client";
-import Image from "next/image";
 import PriceTime from "@/components/product/PriceTime";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import PhoneIcon from "@mui/icons-material/Phone";
-import HourIcon from "@mui/icons-material/AccessTime";
 import {
   Box,
   Button,
@@ -17,7 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import { CardDescription } from "@/components/product/CardDesciption";
 import { VariablesColors } from "@/styles/Variables.colors";
@@ -114,25 +112,37 @@ function Product(): React.ReactNode {
     productQuantity: number,
   ): React.ReactNode {
     return (
-      <Stack display={"flex"} flexDirection={{ xs: "column", md: "row" }}>
+      <Stack
+        display={"flex"}
+        flexDirection={{ xs: "column", md: "row" }}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
         <Grid
           border={0}
           container
+          item
           sm={6}
           sx={{ xs: { width: "50%" }, sm: { width: "100%" } }}
           borderRadius={2}
           alignContent={"center"}
           gap={4}
-          justifyContent={"end"}
-          padding={{ xs: 2, sm: 4 }}
+          justifyContent={"center"}
+          padding={{ xs: 2 }}
         >
           {product.pictures.length > 0 && (
             <CardMedia
               component="img"
               alt={product.name}
-              sx={{ maxWidth: "450px", objectFit: "contain" }}
-              style={{ borderRadius: "1rem" }}
-              image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/${product.pictures[0].name}`}
+              sx={{
+                maxHeight: {
+                  xs: "50vh",
+                  sm: "70vh",
+                },
+                objectFit: "contain",
+                borderRadius: "1rem",
+              }}
+              image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}${product.pictures[0].urlHD}`}
             />
           )}
         </Grid>

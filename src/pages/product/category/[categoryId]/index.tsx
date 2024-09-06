@@ -78,7 +78,7 @@ function List(): React.ReactNode {
                     name={product.name}
                     price={product.price}
                     description={product.description}
-                    src={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/${product.pictures[0]?.name}`}
+                    pictures={product.pictures}
                   />
                 </Link>
               ))}

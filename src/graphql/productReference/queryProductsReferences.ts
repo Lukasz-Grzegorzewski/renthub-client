@@ -5,6 +5,11 @@ export const QUERY_PRODUCTS_REFERENCES = gql`
     items: getProductsReferences {
       id
       name
+      brandName
+      price
+      pictures {
+        urlMiniature
+      }
     }
   }
 `;

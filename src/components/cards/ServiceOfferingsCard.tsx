@@ -28,6 +28,7 @@ export default function ServiceOfferingsCards({
           margin: "auto",
           width: "auto",
           height: "100px",
+          padding: { xs: "0.5rem", md: "1rem" },
         }}
         component="img"
         image={card.image}

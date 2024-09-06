@@ -26,6 +26,11 @@ export const QUERY_ALL_USERS = gql`
         firstName
         lastName
       }
+      avatar {
+        id
+        urlMiniature
+        urlHD
+      }
     }
   }
 `;

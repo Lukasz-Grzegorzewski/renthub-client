@@ -10,6 +10,7 @@ import { CardDetailsBtn } from "@/styles/MuiButtons";
 import Link from "next/link";
 import { VariablesColors } from "@/styles/Variables.colors";
 import CollapseCard from "../utils/CollapseCard";
+import { IPicture } from "@/types/IPicture";
 
 type ProductCardPropsType = {
   id: number;
@@ -17,7 +18,7 @@ type ProductCardPropsType = {
   name: string;
   price: number | number[];
   description: string;
-  src: string;
+  pictures: IPicture[];
 };
 
 function ProductCard({
@@ -25,7 +26,7 @@ function ProductCard({
   brandName,
   name,
   price,
-  src,
+  pictures,
 }: ProductCardPropsType) {
   const { darkBlueColor, orangeColor } = new VariablesColors();
   const priceArray = Array.isArray(price) ? price : [price];
@@ -69,7 +70,7 @@ function ProductCard({
           <CardMedia
             component="img"
             alt={name}
-            image={src}
+            image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}${pictures[0].urlMiniature}`}
             sx={{ width: "150px", height: "150px", objectFit: "contain" }}
           />
         </Box>

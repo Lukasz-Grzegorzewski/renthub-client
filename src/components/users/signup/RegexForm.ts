@@ -8,6 +8,11 @@ export const isValidNameRegex = (name: string) => {
   return regex.test(name);
 };
 
+export const isValidNickNameRegex = (name: string) => {
+  const regex = /^[a-zA-ZÀ-ÿ\s-]{2,50}$/;
+  return regex.test(name);
+};
+
 export const isValidPhoneNumberRegex = (phoneNumber: string) => {
   const regex = /^\d{10}$/;
   return regex.test(phoneNumber);

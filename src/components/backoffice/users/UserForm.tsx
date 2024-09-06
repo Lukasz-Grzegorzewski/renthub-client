@@ -1,5 +1,5 @@
 // REACT
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 // FORMIK - YUP
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -8,12 +8,37 @@ import { Box, Button, Grid, TextField } from "@mui/material";
 // UTILS
 import { styleBoxContainer } from "@/components/utils/function";
 import { VariablesColors } from "@/styles/Variables.colors";
-import { UserFormValues } from "@/types/UserTypes";
-import { useRouter } from "next/router";
+import { UserFormValues, UserTypes } from "@/types/UserTypes";
+import { useMutation, useQuery } from "@apollo/client";
+import { QUERY_USER_GETBYID } from "@/graphql/user/queryUserGetById";
+import { Toaster } from "react-hot-toast";
+import { MUTATION_UPDATE_USER } from "@/graphql/user/mutationUserUpdate";
+import { showToast } from "@/components/utils/toastHelper";
+import { mutationCreateUser } from "@/graphql/user/mutationCreateUser";
 
 export const UserForm = ({ userId }: { userId?: string | null }) => {
   const { lightBlueColor, hoverBlueColor } = new VariablesColors();
-  const router = useRouter();
+  const { data } = useQuery<{ item: UserTypes }>(QUERY_USER_GETBYID, {
+    variables: { id: userId },
+  });
+
+  const [doCreate, loading] = useMutation(mutationCreateUser);
+
+  const [doUpdate] = useMutation(MUTATION_UPDATE_USER, {
+    refetchQueries: [QUERY_USER_GETBYID],
+  });
+
+  useEffect(() => {
+    if (data) {
+      formik.setValues({
+        firstName: data.item.firstName,
+        lastName: data.item.lastName,
+        email: data.item.email,
+        phoneNumber: data.item.phoneNumber,
+        password: "",
+      });
+    }
+  }, [data]);
 
   const formik = useFormik<UserFormValues>({
     initialValues: {
@@ -24,23 +49,72 @@ export const UserForm = ({ userId }: { userId?: string | null }) => {
       password: "",
     },
     validationSchema: Yup.object({
-      firstName: Yup.string().required("Le prénom est requis"),
-      lastName: Yup.string().required("Le nom est requis"),
-      email: Yup.string().email().required("L'email est requis"),
-      phoneNumber: Yup.string().required("Le numéro de téléphone est requis"),
-      password: Yup.string().required("Le mot de passe est requis"),
+      firstName: userId
+        ? Yup.string().matches(
+            /^[a-zA-Z]+$/,
+            "Le prénom ne doit contenir que des lettres",
+          )
+        : Yup.string()
+            .matches(/^[a-zA-Z]+$/, "Le nom ne doit contenir que des lettres")
+            .required("Le prénom est requis"),
+      lastName: userId
+        ? Yup.string().matches(
+            /^[a-zA-Z]+$/,
+            "Le nom ne doit contenir que des lettres",
+          )
+        : Yup.string()
+            .matches(/^[a-zA-Z]+$/, "Le nom ne doit contenir que des lettres")
+            .required("Le nom est requis"),
+      email: userId
+        ? Yup.string().email()
+        : Yup.string().email().required("L'email est requis"),
+      phoneNumber: userId
+        ? Yup.string().min(10, "Le numéro de téléphone doit avoir 10 chiffres")
+        : Yup.string()
+            .min(10, "Le numéro de téléphone doit avoir 10 chiffres")
+            .required("Le numéro de téléphone est requis"),
+      password: userId
+        ? Yup.string().matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{9,}$/,
+            "Le mot de passe doit contenir au moins 9 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial",
+          )
+        : Yup.string().required("Le mot de passe est requis"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       if (userId) {
-        // updateUser({ variables: { id: userId, data: values } });
+        try {
+          const { email, ...rest } = values;
+          const result = await doUpdate({
+            variables: { userId: Number(userId), data: rest },
+          });
+          if (result.data?.updateUser) {
+            formik.resetForm();
+            showToast("success", "Utilisateur modifié avec succès !");
+          }
+        } catch (error) {
+          showToast("error", "Erreur lors de la modification d'utilisateur");
+        }
       } else {
-        // createUser({ variables: { data: values } });
+        try {
+          console.warn("update with NO id");
+          // updateUser({ variables: { id: userId, data: values } });
+          const result = await doCreate({
+            variables: { data: values },
+          });
+          if (result.data?.updateUser) {
+            formik.resetForm();
+            showToast("success", "Utilisateur créé avec succès !");
+          }
+        } catch (error) {
+          showToast("error", "Erreur lors de la creation d'utilisateur");
+        }
       }
     },
   });
 
   return (
     <>
+      <Toaster />
       <Box sx={styleBoxContainer(lightBlueColor)}>
         <form onSubmit={formik.handleSubmit}>
           <Grid
@@ -91,6 +165,7 @@ export const UserForm = ({ userId }: { userId?: string | null }) => {
                 name="email"
                 label="Email"
                 value={formik.values.email}
+                disabled={userId ? true : false}
                 onChange={formik.handleChange}
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
@@ -121,7 +196,7 @@ export const UserForm = ({ userId }: { userId?: string | null }) => {
                 id="password"
                 type="password"
                 name="password"
-                label="Mot de passe"
+                label={userId ? "Nouveau mot de passe" : "Mot de passe"}
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 error={

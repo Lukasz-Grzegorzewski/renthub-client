@@ -1,4 +1,8 @@
+import { MUTATION_DELETE_USER } from "@/graphql/user/mutationUserDelete";
+import { QUERY_ALL_USERS } from "@/graphql/user/queryAllUsers";
 import { VariablesColors } from "@/styles/Variables.colors";
+import { useMutation } from "@apollo/client";
+import { Box, CardMedia } from "@mui/material";
 import {
   GridActionsCellItem,
   GridColDef,
@@ -10,11 +14,68 @@ import React, { useMemo } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-export function ColonnesTableUser() {
+type ColonnesTableUserPropsType = {
+  onUserDeleted: (message: string[]) => void;
+};
+
+export function ColonnesTableUser({
+  onUserDeleted,
+}: ColonnesTableUserPropsType): GridColDef[] {
   const { errorColor } = new VariablesColors();
   const router = useRouter();
+
+  const [doDeleteUser] = useMutation(MUTATION_DELETE_USER, {
+    refetchQueries: [QUERY_ALL_USERS],
+  });
+
+  const handleDeleteUser = async (id: number) => {
+    try {
+      const deleteResult = await doDeleteUser({
+        variables: {
+          userDeleteId: Number(id),
+        },
+      });
+      const message = deleteResult?.data?.userDelete?.id
+        ? ["success", "Utilisateur supprimé "]
+        : ["error", "Error lors de la suppression de l'utilisateur"];
+      onUserDeleted(message);
+    } catch (error) {
+      onUserDeleted(["error", "Error lors de la suppression"]);
+      console.error("error", "Error lors de la suppression de l'utilisateur");
+    }
+  };
+
   const userColumns: GridColDef[] = useMemo(
     () => [
+      {
+        field: "Avatar",
+        headerName: "",
+        hide: true,
+        renderCell: ({ row }) =>
+          row.avatar && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <CardMedia
+                component="img"
+                alt={row.firstName}
+                sx={{
+                  maxWidth: "25px",
+                  objectFit: "contain",
+                  borderRadius: "1rem",
+                }}
+                image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}${row.avatar.urlMiniature}`}
+              />
+            </Box>
+          ),
+        flex: 1,
+      },
       {
         field: "firstName",
         headerName: "Prénom",
@@ -23,7 +84,7 @@ export function ColonnesTableUser() {
       },
       {
         field: "lastName",
-        headerName: "Last name",
+        headerName: "Nom",
         valueGetter: (value, row) => row.lastName || "",
         flex: 1,
       },
@@ -121,6 +182,7 @@ export function ColonnesTableUser() {
             }
             label="Supprimer"
             title="Supprimer l'utilisateur"
+            onClick={() => handleDeleteUser(Number(params.row.id))}
           />,
         ],
       },

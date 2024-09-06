@@ -18,6 +18,7 @@ const SignUp = (): React.ReactNode => {
   const [email, setEmail] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
+  const [nickName, setNickName] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const hidenPassword = (): string => {
@@ -36,6 +37,7 @@ const SignUp = (): React.ReactNode => {
     },
     { step: "firstName", title: "Votre prénom", data: firstName },
     { step: "lastName", title: "Votre nom", data: lastName },
+    { step: "nickName", title: "Votre surnom", data: nickName },
     {
       step: "phoneNumber",
       title: "Votre numéro de téléphone",
@@ -50,6 +52,7 @@ const SignUp = (): React.ReactNode => {
       const data: UserFormData = {
         firstName,
         lastName,
+        nickName,
         email,
         password,
         phoneNumber,
@@ -159,6 +162,8 @@ const SignUp = (): React.ReactNode => {
                 setFirstName={setFirstName}
                 lastName={lastName}
                 setLastName={setLastName}
+                nickName={nickName}
+                setNickName={setNickName}
                 phoneNumber={phoneNumber}
                 setPhoneNumber={setPhoneNumber}
                 password={password}
