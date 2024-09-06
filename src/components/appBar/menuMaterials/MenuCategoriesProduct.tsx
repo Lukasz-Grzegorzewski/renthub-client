@@ -26,6 +26,7 @@ function MenuCategoriesProduct({
 }: MenuCategoriesProductProps): React.ReactNode {
   const { darkBlueColor } = new VariablesColors();
   const [openSubMenu, setOpenSubMenu] = useState(open); // a implementer pour fermer la fenetre lors de la selection d'une sous categorie.
+  const [query, setQuery] = useState<string>("");
 
   const { data, loading, error } = useQuery<{ items: ICategory[] }>(
     GET_ALL_CATEGORIES,
@@ -37,8 +38,12 @@ function MenuCategoriesProduct({
     null,
   );
 
+  const filteredCategories = data?.items.filter((category) => {
+    return category.name.toLowerCase().includes(query.toLowerCase());
+  });
+
   /** sort data alphabetical **/
-  const sortedCategories: ICategory[] = data?.items.slice().sort((a, b) => {
+  const sortedCategories: ICategory[] = filteredCategories?.sort((a, b) => {
     return a.name.localeCompare(b.name);
   });
 
@@ -53,10 +58,12 @@ function MenuCategoriesProduct({
     const sortedSubcategories = sortedCategories.find(
       (item) => item.id === categoryId,
     );
-    sortedSubcategories?.childCategories;
+
     if (!sortedSubcategories.childCategories.length) {
       router.push(`/product/category/${categoryId}`);
+      handleMenuCategoriesClose();
     }
+
     setSortedSubCategories(sortedSubcategories?.childCategories || []);
     setSelectedCategoryId(categoryId);
   }
@@ -107,6 +114,8 @@ function MenuCategoriesProduct({
                 backgroundColor={darkBlueColor}
                 borderColor={"white"}
                 colorText={"white"}
+                query={query}
+                setQuery={setQuery}
               />
             </Box>
             <SubMenuCategories
@@ -130,6 +139,7 @@ function MenuCategoriesProduct({
                 idCategoryParent={selectedCategoryId}
                 title="Sous-catégories"
                 listChildCategories={sortedSubCategories}
+                handleMenuCategoriesClose={handleMenuCategoriesClose}
               />
             )}
           </Box>

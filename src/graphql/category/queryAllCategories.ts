@@ -7,8 +7,12 @@ export const GET_ALL_CATEGORIES = gql`
       name
       index
       display
-      createdBy
-      updatedBy
+      createdBy {
+        id
+      }
+      updatedBy {
+        id
+      }
       createdAt
       updatedAt
       parentCategory {
@@ -20,10 +24,18 @@ export const GET_ALL_CATEGORIES = gql`
         id
         index
         name
+        picture {
+          name
+          uri
+          urlHD
+          urlMiniature
+        }
       }
       picture {
         name
         uri
+        urlHD
+        urlMiniature
       }
       productReferences {
         name

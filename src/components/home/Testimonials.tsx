@@ -53,57 +53,36 @@ const testimonialCards: TestimonialCardPropsType[] = [
 
 function Testimonials() {
   const responsive = {
-    xxxxl: {
-      breakpoint: { max: 4000, min: 1730 },
+    varyLargeDesktop: {
+      breakpoint: { max: 4000, min: 1500 },
       items: 3,
-      partialVisibilityGutter: 140,
+      partialVisibilityGutter: 80,
     },
-    xxxl: {
-      breakpoint: { max: 1730, min: 1274 },
-      items: 3,
-      partialVisibilityGutter: 20,
-    },
-    xxl: {
-      breakpoint: { max: 1274, min: 865 },
+    largeDesktop: {
+      breakpoint: { max: 1499, min: 1200 },
       items: 2,
-      partialVisibilityGutter: 150,
+      partialVisibilityGutter: 80,
     },
-    xl: {
-      breakpoint: { max: 864, min: 725 },
-      items: 2,
-      partialVisibilityGutter: 60,
-    },
-    l: {
-      breakpoint: { max: 724, min: 660 },
-      items: 2,
-      partialVisibilityGutter: 30,
-    },
-    m: {
-      breakpoint: { max: 659, min: 600 },
+    desktop: {
+      breakpoint: { max: 1199, min: 801 },
       items: 2,
     },
-    s: {
-      breakpoint: { max: 599, min: 525 },
+    tablet: {
+      breakpoint: { max: 800, min: 745 },
       items: 2,
-      partialVisibilityGutter: 0,
     },
-    xs: {
-      breakpoint: { max: 524, min: 455 },
-      items: 2,
-      partialVisibilityGutter: 200,
-    },
-    xxs: {
-      breakpoint: { max: 454, min: 404 },
-      items: 2,
-      partialVisibilityGutter: 150,
-    },
-    xxxs: {
-      breakpoint: { max: 403, min: 360 },
+    mobile: {
+      breakpoint: { max: 744, min: 650 },
       items: 1,
-      partialVisibilityGutter: 0,
+      partialVisibilityGutter: 180,
     },
-    smallest: {
-      breakpoint: { max: 359, min: 0 },
+    small: {
+      breakpoint: { max: 649, min: 500 },
+      items: 1,
+      partialVisibilityGutter: 100,
+    },
+    extraSmall: {
+      breakpoint: { max: 499, min: 0 },
       items: 1,
     },
   };

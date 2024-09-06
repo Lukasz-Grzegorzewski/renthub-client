@@ -1,8 +1,12 @@
+import { Cart } from "./Cart";
+import { IOrder } from "./IOrder";
+import { IPicture } from "./IPicture";
 import { Role } from "./RoleTypes";
 
 export type UserFormData = {
   firstName: string;
   lastName: string;
+  nickName: string;
   email: string;
   password: string;
   phoneNumber?: string;
@@ -40,15 +44,19 @@ export type VerifyEmailMutationData = {
 
 export interface UserInterface {
   id: string;
+  email: string;
   firstName: string;
   lastName: string;
-  email: string;
-  phoneNumber: string;
-  createdBy: CreatedBy | null;
-  createdAt: string;
-  role: Role;
-  lastConnectionDate: string;
   nickName: string;
+  dateOfBirth: string;
+  phoneNumber: string;
+  avatar: IPicture;
+  role: Role;
+  cart: Cart;
+  orders: IOrder[];
+  lastConnectionDate: string;
+  createdBy: UserInterface | null;
+  createdAt: string;
   updatedAt: string;
   updatedBy: UpdatedBy | null;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import UserEmail from "../components/UserEmail";
 import UserName from "../components/UserName";
+import UserNickName from "../components/UserNickName";
 import UserPhone from "../components/UserPhone";
 import UserPassword from "../components/UserPassword";
 import { StepFormButton } from "@/styles/MuiButtons";
@@ -11,6 +12,7 @@ import {
   isValidNameRegex,
   isValidPhoneNumberRegex,
   isValidPasswordRegex,
+  isValidNickNameRegex,
 } from "./RegexForm";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import FingerprintIcon from "@mui/icons-material/Fingerprint";
@@ -27,6 +29,8 @@ type StepSignUpFormProps = {
   setFirstName: (firstName: string) => void;
   lastName: string;
   setLastName: (lastName: string) => void;
+  nickName: string;
+  setNickName: (lastName: string) => void;
   phoneNumber: string;
   setPhoneNumber: (phoneNumber: string) => void;
   password: string;
@@ -75,7 +79,20 @@ const StepForm = (props: StepSignUpFormProps): React.ReactNode => {
         type: "lastName",
       },
       isDisabled: () =>
-        props.lastName === "" || !isValidNameRegex(props.lastName),
+        props.lastName === "" || !isValidNickNameRegex(props.lastName),
+      nextStep: "nickName",
+    },
+    nickName: {
+      title: "Votre  surnom ?",
+      subtitle: `Dites nous en un peu plus sur vous, ${props.nickName}.`,
+      icon: FingerprintIcon,
+      Component: UserNickName,
+      componentProps: {
+        userNickName: props.nickName,
+        setUserNickName: props.setNickName,
+      },
+      isDisabled: () =>
+        props.lastName === "" || !isValidNameRegex(props.nickName),
       nextStep: "phoneNumber",
     },
     phoneNumber: {

@@ -65,7 +65,7 @@ export function ServiceOfferings() {
         container
         item
         maxWidth="xl"
-        justifyContent={"space-between"}
+        justifyContent={"center"}
         alignItems="start"
         xs={9}
         direction={{ xs: "row", md: "row" }}

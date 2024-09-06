@@ -6,21 +6,23 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import React from "react";
-import SearchIcon from "@mui/icons-material/Search";
+import { CancelOutlined } from "@mui/icons-material";
 
 export interface SearchBarProps {
   backgroundColor: string;
   borderColor: string;
   colorText: string;
+  query: string;
+  setQuery: (query: string) => void;
 }
 
 function SearchBar({
   backgroundColor,
   borderColor,
   colorText,
+  query,
+  setQuery,
 }: SearchBarProps): React.ReactNode {
-  const [globalFilterValue, setGlobalFilterValue] = React.useState<string>("");
-
   return (
     <FormControl sx={{ mx: "auto", width: "30ch" }} variant="outlined">
       <InputLabel
@@ -41,16 +43,19 @@ function SearchBar({
         id="search"
         type="text"
         size="small"
-        onClick={(e) => {
-          const inputElement = e.target as HTMLInputElement;
-          setGlobalFilterValue(inputElement.value);
+        value={query}
+        onChange={(e) => {
+          const value = e.target.value;
+          setQuery(value);
         }}
         endAdornment={
-          <InputAdornment position="end">
-            <IconButton aria-label="search">
-              <SearchIcon />
-            </IconButton>
-          </InputAdornment>
+          query !== "" && (
+            <InputAdornment position="end">
+              <IconButton aria-label="search">
+                <CancelOutlined onClick={() => setQuery("")} />
+              </IconButton>
+            </InputAdornment>
+          )
         }
         label="Rechercher"
       />

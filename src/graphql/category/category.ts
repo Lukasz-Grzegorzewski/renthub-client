@@ -7,8 +7,12 @@ export const MUTATION_CREATE_CATEGORY = gql`
       name
       index
       display
-      createdBy
-      updatedBy
+      createdBy {
+        id
+      }
+      updatedBy {
+        id
+      }
       createdAt
       updatedAt
       parentCategory {
@@ -20,6 +24,12 @@ export const MUTATION_CREATE_CATEGORY = gql`
         name
         id
         index
+        picture {
+          name
+          id
+          urlHD
+          urlMiniature
+        }
       }
       picture {
         name
