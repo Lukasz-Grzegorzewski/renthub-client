@@ -87,8 +87,7 @@ export const UserForm = ({ userId }: { userId?: string | null }) => {
           const result = await doUpdate({
             variables: { userId: Number(userId), data: rest },
           });
-          if (result.data?.updateUser) {
-            formik.resetForm();
+          if (result.data?.item) {
             showToast("success", "Utilisateur modifié avec succès !");
           }
         } catch (error) {
@@ -96,8 +95,6 @@ export const UserForm = ({ userId }: { userId?: string | null }) => {
         }
       } else {
         try {
-          console.warn("update with NO id");
-          // updateUser({ variables: { id: userId, data: values } });
           const result = await doCreate({
             variables: { data: values },
           });
