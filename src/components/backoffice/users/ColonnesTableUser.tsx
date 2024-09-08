@@ -51,29 +51,28 @@ export function ColonnesTableUser({
         field: "Avatar",
         headerName: "",
         hide: true,
-        renderCell: ({ row }) =>
-          row.avatar && (
-            <Box
+        renderCell: ({ row }) => (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <CardMedia
+              component="img"
+              alt={row.firstName}
               sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                height: "100%",
+                maxWidth: "25px",
+                objectFit: "contain",
+                borderRadius: "1rem",
               }}
-            >
-              <CardMedia
-                component="img"
-                alt={row.firstName}
-                sx={{
-                  maxWidth: "25px",
-                  objectFit: "contain",
-                  borderRadius: "1rem",
-                }}
-                image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}${row.avatar.urlMiniature}`}
-              />
-            </Box>
-          ),
+              image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}${row.avatar?.urlMiniature || "/images/avatar/default-Mini.png"}`}
+            />
+          </Box>
+        ),
         flex: 1,
       },
       {
