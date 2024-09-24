@@ -19,7 +19,7 @@ const CartContext = createContext<CartContextProps | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const { data, error, refetch } = useQuery<{ item: Cart }>(GET_CART);
+  const { data, loading, error, refetch } = useQuery<{ item: Cart }>(GET_CART);
   const [cart, setCart] = useState<Cart | null>(null);
 
   useEffect(() => {

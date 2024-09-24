@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
 import * as React from "react";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import ResponsiveMenu from "./ResponsiveMenu";
 import { VariablesColors } from "@/styles/Variables.colors";
@@ -117,12 +116,21 @@ function Navbar(): React.ReactNode {
             <Box
               sx={{ display: { xs: "flex", md: "none" }, alignItems: "center" }}
             >
-              <Image
-                src="/images/favicon.png"
-                alt="logo"
-                width={40}
-                height={40}
+              <CardMedia
+                component="img"
+                image={"/images/favicon.png"}
+                alt="Renthub Logo"
+                sx={{
+                  width: 40,
+                  height: 40,
+                  cursor: "pointer",
+                  alignSelf: "center",
+                }}
+                onClick={() => {
+                  router.push("/");
+                }}
               />
+
               {/* @TODO: set modal in responsive menu */}
               <IconButton
                 aria-describedby={id}

@@ -49,31 +49,6 @@ function OrderCard({ cart }: { cart: Cart }) {
       <CardContent>
         <Stack spacing={2}>
           {/* Row 1 */}
-          {/* <Grid container alignItems="center">
-            <Grid item xs={6}>
-              <Typography variant="body2" fontSize={"small"}>
-                État de la demande :
-              </Typography>
-            </Grid>
-            <Grid item xs={6} textAlign="right">
-              <Box
-                sx={{
-                  padding: "2px 10px",
-                  fontSize: "small",
-                  backgroundColor: "rgba(0, 255, 0, 0.4)",
-                  borderRadius: "10px",
-                  display: "inline-block",
-                }}
-              >
-                <Typography variant="body2" fontSize={"small"}>
-                  disponible
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid> */}
-          {/* <Divider /> */}
-
-          {/* Row 2 */}
           <Grid container alignItems="center">
             <Grid item xs={6}>
               <Typography variant="body1">TVA 20%</Typography>
@@ -84,7 +59,7 @@ function OrderCard({ cart }: { cart: Cart }) {
           </Grid>
           <Divider />
 
-          {/* Row 3 */}
+          {/* Row 2 */}
           <Grid container alignItems="center">
             <Grid item xs={6}>
               <Typography variant="body1">Article HT</Typography>
@@ -95,7 +70,7 @@ function OrderCard({ cart }: { cart: Cart }) {
           </Grid>
           <Divider />
 
-          {/* Row 4 */}
+          {/* Row 3 */}
           <Grid container alignItems="center">
             <Grid item xs={6}>
               <Typography variant="body1">Total</Typography>

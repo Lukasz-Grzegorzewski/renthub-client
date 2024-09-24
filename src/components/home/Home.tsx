@@ -15,7 +15,7 @@ function Home() {
   const styleHero = {
     position: "relative",
     background: "url('/images/heroBackground.jpg')",
-    backgroundAttachment: "fixed",
+    backgroundAttachment: "cover",
     backgroundPosition: "center 30%",
     backgroundSize: "cover",
     height: matchSize599 ? "605px" : "500px",
