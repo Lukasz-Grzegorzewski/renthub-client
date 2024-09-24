@@ -59,6 +59,8 @@ const StepSubmit = (props: StepSubmitProps): React.ReactNode => {
       <StepFormButton
         sx={{ width: "100% ", marginTop: "10px" }}
         onClick={props.onSubmit}
+        disabled={!recaptcha}
+        hidden={!recaptcha}
       >
         {props.loading ? (
           <CircularProgress size={24} />

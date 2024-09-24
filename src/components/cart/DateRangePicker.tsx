@@ -2,7 +2,14 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { fr } from "date-fns/locale";
-import { Box, Button, Link, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { DateRangeState } from "../../pages/cart/[productId]/add";
 import { CiCalendarDate } from "react-icons/ci";
@@ -12,7 +19,7 @@ type DateRangePickerProps = {
   setState: (state: any) => void;
   quantity: number;
   setQuantity: (quantity: number) => void;
-  quantityAvailable: number;
+  quantityAvailable: number | undefined;
   addProductCart: () => void;
 };
 
@@ -103,9 +110,10 @@ export default function DateRangePicker({
           >
             <TextField
               type="number"
-              label="Quantité"
+              label="Qté"
               size="small"
-              value={quantityAvailable === 0 ? 0 : quantity}
+              disabled={quantityAvailable ? false : true}
+              value={quantityAvailable ? quantity : ""}
               onChange={(e) => {
                 Number(e.target.value) <= quantityAvailable &&
                   Number(e.target.value) > 0 &&
@@ -113,9 +121,14 @@ export default function DateRangePicker({
               }}
               sx={{ width: "30%" }}
             />
-            <Typography variant="body1">
-              Disponible : {quantityAvailable}
-            </Typography>
+            <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+              <Typography variant="body1">Disponible :</Typography>
+              {quantityAvailable ? (
+                <Typography variant="body1">{quantityAvailable}</Typography>
+              ) : (
+                <CircularProgress size={"1rem"} />
+              )}
+            </Box>
           </Box>
           <Box
             sx={{

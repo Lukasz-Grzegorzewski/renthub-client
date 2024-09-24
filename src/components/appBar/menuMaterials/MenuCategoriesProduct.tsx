@@ -1,4 +1,4 @@
-import { Box, Popover } from "@mui/material";
+import { Box, CircularProgress, Popover } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import SearchBar from "../SearchBar";
 import { VariablesColors } from "@/styles/Variables.colors";
@@ -70,7 +70,7 @@ function MenuCategoriesProduct({
 
   useEffect(() => {}, [selectedCategoryId]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <CircularProgress />;
   if (error) return <p>Error...</p>;
   return (
     <Popover

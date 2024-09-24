@@ -12,7 +12,7 @@ const UserEmail = (props: UserEmailProps): React.ReactNode => {
   const validateEmail = (name: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(name);
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     props.setEmail(value);
     if (!validateEmail(value)) {
@@ -32,7 +32,7 @@ const UserEmail = (props: UserEmailProps): React.ReactNode => {
       helperText={emailError}
       fullWidth
       value={props.email || ""}
-      onChange={handlePasswordChange}
+      onChange={handleChangeEmail}
       required
     />
   );

@@ -21,6 +21,7 @@ function List(): React.ReactNode {
         return a.name.localeCompare(b.name);
       })
     : [];
+
   if (loading) {
     return (
       <LayoutFull title="RentHub : Product">
@@ -28,6 +29,7 @@ function List(): React.ReactNode {
       </LayoutFull>
     );
   }
+
   if (error) {
     return (
       <LayoutFull title="RentHub : Product">
@@ -60,7 +62,7 @@ function List(): React.ReactNode {
           >
             {sortedProducts &&
               sortedProducts?.map((product) => (
-                <Link key={product.id} href={`/product/${product.id}`}>
+                <Box key={product.id}>
                   <Typography
                     variant="h6"
                     component="h2"
@@ -80,7 +82,7 @@ function List(): React.ReactNode {
                     description={product.description}
                     pictures={product.pictures}
                   />
-                </Link>
+                </Box>
               ))}
           </Box>
         </Grid>

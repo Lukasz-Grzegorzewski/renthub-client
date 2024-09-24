@@ -9,11 +9,12 @@ import { ProductCart } from "@/types/ProductCart";
 import { MUTATION_DELETE_PRODUCT_CART } from "@/graphql/productCart/productCart";
 import { showToast } from "../utils/toastHelper";
 import { Toaster } from "react-hot-toast";
+import BackspaceIcon from "@mui/icons-material/Backspace";
 
 export default function CartProducts() {
   const { cart, refetchCartContext } = useCartContext();
   refetchCartContext();
-  const { lightGreyColor } = new VariablesColors();
+  const { lightGreyColor, errorColor } = new VariablesColors();
 
   const { data: countStockAvaiable, refetch } = useQuery<{ count: number }>(
     GET_COUNT_STOCKS_AVAILABLE_BY_DATES_PRODUCTREFERENCEID,
@@ -100,20 +101,33 @@ export default function CartProducts() {
                 <ProductCartAvailability productCart={productCart} />
               </Box>
             </Box>
-            <Button
-              variant="contained"
-              color="secondary"
-              // size="small" // Adjust size here
+            <BackspaceIcon
               onClick={() => handleDeleteProductCart(productCart.id)}
               sx={{
                 position: "absolute",
                 top: "0.5rem",
                 right: "0.5rem",
-                padding: "0",
+                color: errorColor,
+                cursor: "pointer",
+              }}
+            />
+            {/* <Button
+              variant="contained"
+              color="secondary"
+              size="small"
+              onClick={() => handleDeleteProductCart(productCart.id)}
+              sx={{
+                position: "absolute",
+                top: "0.5rem",
+                right: "0.5rem",
+                width: "fit-content",
+                minWidth: "unset",
+                padding: "0 0.5rem",
+                backgroundColor: errorColor,
               }}
             >
-              Delete
-            </Button>
+              X
+            </Button> */}
           </Box>
         ))}
       </Box>

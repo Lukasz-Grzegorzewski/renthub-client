@@ -105,7 +105,7 @@ export default function AddToCart() {
               quantity={quantity}
               setState={setState}
               setQuantity={setQuantity}
-              quantityAvailable={countStockAvaiable?.count || 0}
+              quantityAvailable={countStockAvaiable?.count}
               addProductCart={addProductCart}
             />
           </Grid>
