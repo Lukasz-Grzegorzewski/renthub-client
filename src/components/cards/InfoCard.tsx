@@ -1,4 +1,11 @@
-import { Card, CardContent, CardMedia, Stack, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { VariablesColors } from "@/styles/Variables.colors";
 
@@ -15,10 +22,12 @@ function InfoCard({ id, title, icon, paragraphs }: InfoCardPropsType) {
   const greenValue = parseInt(orangeColor.substring(3, 5), 16);
   const blueValue = parseInt(orangeColor.substring(5, 7), 16);
 
+  const matche350 = useMediaQuery("(max-width:350px)");
+
   return (
     <Card
       sx={{
-        width: "300px",
+        ...(matche350 ? { width: "fit" } : { width: "300px" }),
         padding: "1.2rem",
         borderRadius: "20px",
         boxShadow: "none",

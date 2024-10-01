@@ -27,7 +27,8 @@ function FooterMenuCard({
           variant="h6"
           component="h3"
           textAlign="left"
-          fontWeight={700}
+          fontWeight={100}
+          fontSize="1rem"
         >
           {menuCard.title}
         </Typography>
@@ -46,6 +47,8 @@ function FooterMenuCard({
                 padding={"0.1rem 0"}
                 component="div"
                 textAlign="left"
+                fontSize="0.7rem"
+                fontWeight={600}
               >
                 {link.name}
               </Typography>

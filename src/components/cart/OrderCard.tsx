@@ -23,16 +23,21 @@ function OrderCard({ cart }: { cart: Cart }) {
   const [doOrder] = useMutation(MUTATION_ORDER);
 
   const handleOrder: React.MouseEventHandler<HTMLButtonElement> = async () => {
-    try {
-      await doOrder();
-      showToast("success", "Produit ajouté au panier");
-      setTimeout(() => {
-        router.replace("/");
-      }, 2000);
-    } catch (error) {
-      showToast("error", "Une erreur s'est produite");
+    if (cart?.productCarts?.length === 0)
+      showToast("error", "Votre panier est vide");
+    else if (cart?.productCarts?.length > 0) {
+      try {
+        await doOrder();
+        showToast("success", "Produit ajouté au panier");
+        setTimeout(() => {
+          router.replace("/");
+        }, 2000);
+      } catch (error) {
+        showToast("error", "Une erreur s'est produite");
+      }
     }
   };
+
   return (
     <Card
       sx={{
@@ -83,7 +88,10 @@ function OrderCard({ cart }: { cart: Cart }) {
 
           {/* Button */}
           <Box display="flex" justifyContent="flex-end" mt={2}>
-            <OrangeBtnWhiteHover onClick={handleOrder}>
+            <OrangeBtnWhiteHover
+              onClick={handleOrder}
+              hidden={cart?.productCarts?.length === 0}
+            >
               Passer au paiement
             </OrangeBtnWhiteHover>
           </Box>

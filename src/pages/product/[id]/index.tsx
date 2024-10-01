@@ -182,7 +182,8 @@ function Product(): React.ReactNode {
             sx={{
               mt: 2,
               display: "flex",
-              justifyContent: "start",
+              justifyContent: "center",
+              flexWrap: "wrap",
               gap: "1rem", // Assurez-vous que la valeur est correcte
               mx: "0rem",
             }}
@@ -190,7 +191,7 @@ function Product(): React.ReactNode {
             <PriceTime price={prices.price2days} time={2} isWeekend={false} />
 
             <PriceTime
-              color="white"
+              color="lightgray"
               price={prices.price4days}
               border
               time={4}
@@ -198,6 +199,7 @@ function Product(): React.ReactNode {
             />
 
             <PriceTime
+              color="lightgray"
               price={prices.price2days}
               priceRental={prices.priceWeekend}
               border
@@ -207,8 +209,9 @@ function Product(): React.ReactNode {
           </Box>
           <Stack
             direction="row"
-            spacing={2}
-            justifyContent="start"
+            flexWrap="wrap"
+            gap={4}
+            justifyContent="center"
             paddingTop={4}
           >
             <OrangeBtnWhiteHover onClick={(e) => addProductToCart(product.id)}>

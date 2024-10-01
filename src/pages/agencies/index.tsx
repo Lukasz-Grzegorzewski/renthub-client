@@ -129,7 +129,7 @@ export default function Agencies(): React.ReactNode {
             paddingBlockStart={0}
           >
             {branches.map((branch, index) => (
-              <Grid key={index} item xs={12} md={12} spacing={{ xs: 0, md: 4 }}>
+              <Grid key={index} item xs={12} md={12} gap={{ xs: 0, md: 4 }}>
                 <AgencyInfoCard
                   displayMini={true}
                   agencyName={branch.name}
@@ -143,7 +143,7 @@ export default function Agencies(): React.ReactNode {
         </>
 
         <Stack maxWidth={"800px"} marginBlockEnd={4}>
-          <Map width={screen.width} height={700} branches={branches} />
+          <Map width={window.innerWidth} height={700} branches={branches} />
         </Stack>
       </Stack>
     </LayoutFull>

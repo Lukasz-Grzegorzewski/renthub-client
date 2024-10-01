@@ -20,7 +20,6 @@ export default function Cart() {
             sm={6}
             sx={{
               backgroundColor: lightGreyColor,
-              borderLeft: "1px solid grey",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",

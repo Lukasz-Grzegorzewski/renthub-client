@@ -2,11 +2,16 @@ import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { Grid, Typography, useMediaQuery } from "@mui/material";
 import Carousel from "../utils/carousel/Carousel";
+import { QUERY_PRODUCTS_REFERENCES } from "@/graphql/productReference/queryProductsReferences";
+import { useQuery } from "@apollo/client";
 
 function Hero() {
   const { whiteColor, blackColor } = new VariablesColors();
   const matches = useMediaQuery("(max-width:599px)");
   const matchesMedium = useMediaQuery("(max-width:800px)");
+
+  const { data } = useQuery(QUERY_PRODUCTS_REFERENCES);
+  const products = data?.items || [];
 
   const styleOverlay = {
     background:

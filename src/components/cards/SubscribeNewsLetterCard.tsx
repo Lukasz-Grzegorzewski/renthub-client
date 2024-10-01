@@ -21,10 +21,10 @@ function SubscribeNewsLetterCard(): React.ReactNode {
 
   const handleSubscribe = () => {
     // mock email subscription : if the server response is 200, the subscription is successful
+    setEmailStatus(true);
     setTimeout(() => {
-      emailStatus ? setEmailStatus(false) : setEmailStatus(true);
-      emailStatus ? setEmailStatus(false) : setEmailStatus(true);
-    }, 600);
+      setEmailStatus(false);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -51,7 +51,8 @@ function SubscribeNewsLetterCard(): React.ReactNode {
           variant="h6"
           component="h3"
           textAlign="left"
-          fontWeight={700}
+          fontWeight={100}
+          fontSize="1rem"
         >
           <div>{`Je m'inscris à la newsletter pour`}</div>
           {`recevoir les nouveautés !`}
@@ -66,6 +67,7 @@ function SubscribeNewsLetterCard(): React.ReactNode {
         <TextField
           id="outlined-basic"
           label="email"
+          size="small"
           variant="outlined"
           sx={{ width: "80%", margin: "1rem 0" }}
           value={email}

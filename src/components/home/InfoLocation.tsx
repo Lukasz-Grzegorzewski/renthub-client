@@ -55,9 +55,9 @@ function InfoLocation() {
           marginInline={"auto"}
           fontFamily={"Poppins"}
           fontWeight={400}
-          width={"33ch"}
+          // width={"33ch"}
         >
-          Nos équipes vous accompagnent tout au long de votre location.
+          Nos équipes vous accompagnent tout au long de votre location
         </Typography>
       </Stack>
       <Stack

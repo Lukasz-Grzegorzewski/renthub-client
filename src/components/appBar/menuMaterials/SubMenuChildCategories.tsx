@@ -59,12 +59,14 @@ function SubMenuChildCategories({
                     padding={"0 1rem"}
                     flexGrow={1}
                     sx={{
-                      "&:hover": {
-                        backgroundColor: darkBlueColor,
-                        color: whiteColor,
-                        outline: "1px solid #12637e",
-                        borderRadius: "5px",
-                        cursor: "pointer",
+                      "@media (hover: hover)": {
+                        "&:hover": {
+                          backgroundColor: darkBlueColor,
+                          color: whiteColor,
+                          outline: "1px solid #12637e",
+                          borderRadius: "5px",
+                          cursor: "pointer",
+                        },
                       },
                     }}
                   >

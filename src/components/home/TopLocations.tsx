@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import HeroCarousel from "../utils/carousel/Carousel";
+import Carousel from "../utils/carousel/Carousel";
 
 function TopLocations() {
   return (
@@ -20,12 +20,12 @@ function TopLocations() {
           marginInline={"auto"}
           fontFamily={"Poppins"}
           fontWeight={400}
-          width={"33ch"}
+          // width={"33ch"}
         >
           Nos équipes vous accompagnent tout au long de votre location.
         </Typography>
       </Stack>
-      <HeroCarousel type="TopLocations" />
+      <Carousel type="TopLocations" />
     </Stack>
   );
 }

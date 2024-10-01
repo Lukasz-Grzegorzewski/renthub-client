@@ -1,5 +1,5 @@
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
-import { Box, CardMedia, Grid, Typography } from "@mui/material";
+import { Box, CardMedia, Grid, Typography, useMediaQuery } from "@mui/material";
 import Link from "next/link";
 
 type ArticlePropsType = {
@@ -14,6 +14,7 @@ type ArticlePropsType = {
 
 function Article({ bgColor, article, odd }: ArticlePropsType) {
   const sideImage = odd ? "/images/trapezoids.png" : "/images/trapezoids_2.png";
+  const matches500 = useMediaQuery("(max-width:550px)");
 
   return (
     <Box
@@ -49,13 +50,17 @@ function Article({ bgColor, article, odd }: ArticlePropsType) {
             alt="image"
             sx={{
               position: "absolute",
-              ...(odd ? { left: "-70%" } : { right: "-25%" }),
+              ...(odd
+                ? { left: "-60%" }
+                : matches500
+                  ? { right: "0%" }
+                  : { right: "-25%" }),
               rotate: odd ? "60deg" : "-10deg",
               top: odd ? "40%" : "80%",
               zIndex: "1",
               transform: "translateY(-50%)",
               scale: "1.2",
-              objectFit: "cover",
+              objectFit: "fixed",
             }}
             image={sideImage}
           />
@@ -65,7 +70,7 @@ function Article({ bgColor, article, odd }: ArticlePropsType) {
             sx={{
               position: "relative",
               zIndex: "2",
-              objectFit: "cover",
+              objectFit: "fixed",
               borderRadius: "20px",
             }}
             image={article.image}

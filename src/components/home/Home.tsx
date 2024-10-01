@@ -26,13 +26,13 @@ function Home() {
       <Grid item xs={12} lg={9} sx={{ ...styleHero }}>
         <Hero />
       </Grid>
-      <Grid className="body" item xs={9}>
+      <Grid className="body" item xs={11}>
         <InfoLocation />
       </Grid>
-      <Grid className="body" item xs={9}>
+      <Grid className="body" item xs={11}>
         <Promotions />
       </Grid>
-      <Grid className="body" item xs={9}>
+      <Grid className="body" item xs={11}>
         <TopLocations />
       </Grid>
       <Grid item xs={12} component={"section"}>

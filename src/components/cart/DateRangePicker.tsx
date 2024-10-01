@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  IconButton,
   Link,
   TextField,
   Typography,
@@ -13,12 +14,14 @@ import {
 import { VariablesColors } from "@/styles/Variables.colors";
 import { DateRangeState } from "../../pages/cart/[productId]/add";
 import { CiCalendarDate } from "react-icons/ci";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
 
 type DateRangePickerProps = {
   state: DateRangeState;
   setState: (state: any) => void;
   quantity: number;
-  setQuantity: (quantity: number) => void;
+  setQuantity: (quantity: number | ((prev: number) => number)) => void;
   quantityAvailable: number | undefined;
   addProductCart: () => void;
 };
@@ -108,19 +111,85 @@ export default function DateRangePicker({
               flexDirection: "column",
             }}
           >
-            <TextField
-              type="number"
-              label="Qté"
-              size="small"
-              disabled={quantityAvailable ? false : true}
-              value={quantityAvailable ? quantity : ""}
-              onChange={(e) => {
-                Number(e.target.value) <= quantityAvailable &&
-                  Number(e.target.value) > 0 &&
-                  setQuantity(Number(e.target.value));
-              }}
-              sx={{ width: "30%" }}
-            />
+            <Box display="flex" gap={2}>
+              <TextField
+                type="number"
+                label="Qté"
+                size="small"
+                disabled={quantityAvailable ? false : true}
+                value={quantityAvailable ? quantity : ""}
+                sx={{ width: "30%" }}
+              />
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1rem", // Space between the input and buttons
+                }}
+              >
+                {/* Add Button */}
+                <IconButton
+                  sx={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "30px",
+                    height: "30px",
+                    outline: `1px solid black`,
+                    borderRadius: "50%",
+                    backgroundColor: "transparent",
+                    "@media (hover: hover)": {
+                      "&:hover": {
+                        backgroundColor: "orange",
+                        outline: `1px solid orange`,
+                        "& .MuiSvgIcon-root": {
+                          color: "white",
+                        },
+                      },
+                    },
+                    "& .MuiSvgIcon-root": {
+                      color: "black",
+                    },
+                  }}
+                  onClick={(e) => {
+                    quantity > 1 && setQuantity((prev) => prev - 1);
+                  }}
+                >
+                  <RemoveIcon />
+                </IconButton>
+
+                <IconButton
+                  sx={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "30px",
+                    height: "30px",
+                    outline: `1px solid black`,
+                    borderRadius: "50%",
+                    backgroundColor: "transparent",
+                    "@media (hover: hover)": {
+                      "&:hover": {
+                        backgroundColor: "orange",
+                        outline: `1px solid orange`,
+                        "& .MuiSvgIcon-root": {
+                          color: "white",
+                        },
+                      },
+                    },
+                    "& .MuiSvgIcon-root": {
+                      color: "black",
+                    },
+                  }}
+                  onClick={(e) =>
+                    quantity < quantityAvailable &&
+                    setQuantity((prev) => prev + 1)
+                  }
+                >
+                  <AddIcon />
+                </IconButton>
+              </Box>
+            </Box>
             <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
               <Typography variant="body1">Disponible :</Typography>
               {quantityAvailable ? (
