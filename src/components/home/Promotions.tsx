@@ -11,15 +11,17 @@ function Promotions() {
     borderRadius: "20px",
     color: whiteColor,
   };
-  const matches = useMediaQuery("(max-width:800px)");
+  const matches800 = useMediaQuery("(max-width:800px)");
+  const matche500 = useMediaQuery("(max-width:500px)");
 
   return (
     <Grid
       container
-      padding={"5rem 5rem 5rem 5rem"}
+      padding="5rem"
       marginTop={"5rem"}
       sx={{ ...stylePromotions, backgroundColor: darkBlueColor }}
-      {...(matches && { direction: "column", padding: "4rem", gap: "2rem" })}
+      {...(matches800 && { direction: "column", padding: "4rem", gap: "2rem" })}
+      {...(matche500 && { padding: "1rem" })}
     >
       <Grid item xs={5} alignContent={"center"}>
         <Stack direction={"column"} gap="1rem" alignItems={"center"}>
@@ -58,7 +60,7 @@ function Promotions() {
           component="img"
           alt="Promotions"
           image="/images/trapezoids.png"
-          sx={{ marginInline: "2rem", ...(matches && { marginInline: 0 }) }}
+          sx={{ marginInline: "2rem", ...(matches800 && { marginInline: 0 }) }}
         />
         <CardMedia
           component="img"
@@ -69,7 +71,7 @@ function Promotions() {
             inset: 0,
             left: "2rem",
             margin: "auto",
-            ...(matches && { left: 0 }),
+            ...(matches800 && { left: 0 }),
           }}
         />
       </Grid>

@@ -22,8 +22,8 @@ export default function MyMap({
     <MapContainer
       boundsOptions={{ padding: [50, 50] }}
       style={{
-        width: width < 500 ? "100vh" : "800px",
-        height: height ? height : "800px",
+        width: width < 500 ? width : "800px",
+        height: height ? height : "700px",
         borderRadius: "10px",
       }}
       center={[46.65184929900413, 3]}

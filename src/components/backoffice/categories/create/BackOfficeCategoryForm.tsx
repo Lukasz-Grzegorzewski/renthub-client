@@ -234,8 +234,10 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
                   backgroundColor: lightBlueColor,
                   color: "#fff",
                   transition: "all 0.3s ease-in-out",
-                  "&:hover": {
-                    backgroundColor: hoverBlueColor,
+                  "@media (hover: hover)": {
+                    "&:hover": {
+                      backgroundColor: hoverBlueColor,
+                    },
                   },
                 }}
               >

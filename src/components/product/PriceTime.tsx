@@ -38,7 +38,9 @@ export default function PriceTime({
         textAlign: "center",
         width: "120px",
         height: "120px",
-        border: priceRental && `1px solid ${colorPalette.darkBlueColor}`,
+        border:
+          time === 2 && !isWeekend && `1px solid ${colorPalette.darkBlueColor}`,
+        position: "relative",
       }}
     >
       <Typography variant="body1" textAlign={"left"} m={0} paddingLeft={0}>
@@ -69,6 +71,22 @@ export default function PriceTime({
       <Typography variant="body1" textAlign={"left"} m={0} paddingLeft={0}>
         TTC/jour
       </Typography>
+
+      {(time === 4 || isWeekend) && (
+        <Typography
+          variant="body2"
+          textAlign={"left"}
+          fontSize={11}
+          color={colorPalette.errorColor}
+          sx={{
+            position: "absolute",
+            right: "5px",
+            bottom: 0,
+          }}
+        >
+          indisponible
+        </Typography>
+      )}
 
       {/* badge in absolute position */}
       {priceRental && (

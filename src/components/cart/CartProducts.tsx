@@ -47,6 +47,8 @@ export default function CartProducts() {
             <Typography
               variant="h4"
               mt={3}
+              mb={cart?.productCarts.length === 0 ? 10 : 0}
+              textAlign="center"
               sx={{
                 fontSize: {
                   xs: "1.5rem",
@@ -54,7 +56,7 @@ export default function CartProducts() {
                 },
               }}
             >
-              Votre panier
+              Votre panier {cart?.productCarts.length === 0 ? "est vide" : ""}
             </Typography>
           </Box>
         </Box>
@@ -111,23 +113,6 @@ export default function CartProducts() {
                 cursor: "pointer",
               }}
             />
-            {/* <Button
-              variant="contained"
-              color="secondary"
-              size="small"
-              onClick={() => handleDeleteProductCart(productCart.id)}
-              sx={{
-                position: "absolute",
-                top: "0.5rem",
-                right: "0.5rem",
-                width: "fit-content",
-                minWidth: "unset",
-                padding: "0 0.5rem",
-                backgroundColor: errorColor,
-              }}
-            >
-              X
-            </Button> */}
           </Box>
         ))}
       </Box>

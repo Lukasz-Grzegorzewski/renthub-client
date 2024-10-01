@@ -1,10 +1,12 @@
 .submenu-child-categories-link {
-  & :hover {
-    background-color: $darkBlueColor;
-    color: $whiteColor;
-    outline: 1px solid #12637e;
-    border-radius: 5px;
-    cursor: pointer;
-    scale: 1.01;
+  @media (hover: hover) {
+    & :hover {
+      background-color: $darkBlueColor;
+      color: $whiteColor;
+      outline: 1px solid #12637e;
+      border-radius: 5px;
+      cursor: pointer;
+      scale: 1.01;
+    }
   }
 }

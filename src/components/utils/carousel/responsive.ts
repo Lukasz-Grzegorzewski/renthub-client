@@ -76,11 +76,45 @@ export const responsiveTopLocation = {
   small: {
     breakpoint: { max: 649, min: 465 },
     items: 1,
-    partialVisibilityGutter: 100,
+    partialVisibilityGutter: 120,
   },
   extraSmall: {
     breakpoint: { max: 464, min: 0 },
     items: 1,
-    partialVisibilityGutter: 50,
+  },
+};
+
+export const responsiveTestimonials = {
+  varyLargeDesktop: {
+    breakpoint: { max: 4000, min: 1500 },
+    items: 3,
+    partialVisibilityGutter: 80,
+  },
+  largeDesktop: {
+    breakpoint: { max: 1499, min: 1200 },
+    items: 2,
+    partialVisibilityGutter: 80,
+  },
+  desktop: {
+    breakpoint: { max: 1199, min: 801 },
+    items: 2,
+  },
+  tablet: {
+    breakpoint: { max: 800, min: 745 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 744, min: 650 },
+    items: 1,
+    partialVisibilityGutter: 180,
+  },
+  small: {
+    breakpoint: { max: 649, min: 500 },
+    items: 1,
+    partialVisibilityGutter: 100,
+  },
+  extraSmall: {
+    breakpoint: { max: 499, min: 0 },
+    items: 1,
   },
 };

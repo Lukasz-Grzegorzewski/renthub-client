@@ -24,7 +24,7 @@ function MenuCategoriesProduct({
   anchorEl,
   handleMenuCategoriesClose,
 }: MenuCategoriesProductProps): React.ReactNode {
-  const { darkBlueColor } = new VariablesColors();
+  const { darkBlueColor, orangeColor, darkGreyColor } = new VariablesColors();
   const [openSubMenu, setOpenSubMenu] = useState(open); // a implementer pour fermer la fenetre lors de la selection d'une sous categorie.
   const [query, setQuery] = useState<string>("");
 
@@ -82,6 +82,7 @@ function MenuCategoriesProduct({
         vertical: "bottom",
         horizontal: "left",
       }}
+      disableScrollLock={true}
       transformOrigin={{ vertical: -30, horizontal: 200 }}
     >
       <Box
@@ -112,8 +113,8 @@ function MenuCategoriesProduct({
             >
               <SearchBar
                 backgroundColor={darkBlueColor}
-                borderColor={"white"}
-                colorText={"white"}
+                borderColor={orangeColor}
+                colorText={darkGreyColor}
                 query={query}
                 setQuery={setQuery}
               />

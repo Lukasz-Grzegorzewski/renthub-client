@@ -1,55 +1,53 @@
-.testimonials-container{
-  padding : 2rem 12%;
-  background-color: #FFE8D8;
+.testimonials-container {
+  padding: 2rem 12%;
+  background-color: #ffe8d8;
   height: auto;
   .react-multi-carousel-item {
-    padding:1rem;
+    padding: 1rem;
   }
   .testimonials-carousel {
-    &-container{
+    &-container {
       padding-left: 0rem;
       height: 450px;
     }
-  
+
     .react-multiple-carousel__arrow {
       min-width: 2rem;
       min-height: 2rem;
-  
-        &.react-multiple-carousel__arrow--left {
-          left: 0%;
-         transform: translateX(15%);
-        }
-        &.react-multiple-carousel__arrow--right {
-          right: 4rem;
-          transform: translateX(120%);
-        }
+
+      &.react-multiple-carousel__arrow--left {
+        left: 0%;
+        transform: translateX(15%);
+      }
+      &.react-multiple-carousel__arrow--right {
+        right: 4rem;
+        transform: translateX(120%);
+      }
       background-color: $orangeColor;
-  
+
       &:before {
         font-size: 1rem;
-     
       }
-      &:hover {
-        background-color: $whiteColor;
-        box-shadow: inset 0 0 2px $orangeColor;
-      }
-  
-      &:hover::before {
-        color: $orangeColor;
+      @media (hover: hover) {
+        &:hover {
+          background-color: $whiteColor;
+          box-shadow: inset 0 0 2px $orangeColor;
+        }
+
+        &:hover::before {
+          color: $orangeColor;
+        }
       }
     }
-  
-   .react-multi-carousel-list {
-      width:80%;
-     }
-  
-    .react-multi-carousel-dot--active >button { 
-      background-color: orange;
-      }
-  
-  }
-  
 
+    .react-multi-carousel-list {
+      width: 80%;
+    }
+
+    .react-multi-carousel-dot--active > button {
+      background-color: orange;
+    }
+  }
 }
 
 @media screen and (max-width: 599px) {
@@ -58,7 +56,7 @@
 
     .react-multi-carousel-item {
       scale: 0.8;
-      gap:1rem;
+      gap: 1rem;
     }
 
     &.carousel-hero {
@@ -77,6 +75,12 @@
   }
 }
 
+@media screen and (max-width: 500px) {
+  .testimonials-carousel {
+    padding: 2rem 0%;
+  }
+}
+
 @media screen and (max-width: 359px) {
   .testimonials-carousel {
     &.carousel-hero {
@@ -84,6 +88,6 @@
         display: flex;
         justify-content: center;
       }
-     }
-   }
+    }
+  }
 }

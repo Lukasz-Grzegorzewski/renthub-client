@@ -51,7 +51,7 @@ function List(): React.ReactNode {
           </Typography>
 
           <Box
-            minWidth={"400px"}
+            // minWidth={"200px"}
             marginBlock={5}
             flexDirection={"row"}
             justifyContent={"center"}

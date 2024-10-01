@@ -71,7 +71,7 @@ function CollapseCard({ id, list }: CollapseCardPropsType) {
                 }}
               >
                 <Link
-                  href={`/?productId=${id}&price=${price}`}
+                  href={`/product/${id}?price=${price}`}
                   style={{
                     textDecoration: "none",
                     color: "inherit",

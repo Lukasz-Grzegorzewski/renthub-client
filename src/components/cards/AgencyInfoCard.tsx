@@ -124,7 +124,7 @@ export const AgencyInfoCard = ({
               </Typography>
             </>
           )}
-          <Stack direction="row" spacing={2} sx={{ marginTop: 2 }}>
+          <Stack direction="row" gap={2} sx={{ marginTop: 2 }}>
             {!displayMini && (
               <>
                 <Button

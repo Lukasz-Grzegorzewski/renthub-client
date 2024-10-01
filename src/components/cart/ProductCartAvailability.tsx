@@ -69,11 +69,13 @@ function ProductCartAvailability({
             outline: `1px solid black`,
             borderRadius: "50%",
             backgroundColor: "transparent",
-            "&:hover": {
-              backgroundColor: "orange",
-              outline: `1px solid orange`,
-              "& .MuiSvgIcon-root": {
-                color: "white",
+            "@media (hover: hover)": {
+              "&:hover": {
+                backgroundColor: "orange",
+                outline: `1px solid orange`,
+                "& .MuiSvgIcon-root": {
+                  color: "white",
+                },
               },
             },
             "& .MuiSvgIcon-root": {
@@ -99,11 +101,13 @@ function ProductCartAvailability({
             outline: `1px solid black`,
             borderRadius: "50%",
             backgroundColor: "transparent",
-            "&:hover": {
-              backgroundColor: "orange",
-              outline: `1px solid orange`,
-              "& .MuiSvgIcon-root": {
-                color: "white",
+            "@media (hover: hover)": {
+              "&:hover": {
+                backgroundColor: "orange",
+                outline: `1px solid orange`,
+                "& .MuiSvgIcon-root": {
+                  color: "white",
+                },
               },
             },
             "& .MuiSvgIcon-root": {

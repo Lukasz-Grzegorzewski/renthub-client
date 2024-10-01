@@ -45,10 +45,12 @@ function ProductCard({
         justifyContent: "space-between",
         transition: "background-color 0.3s ease",
         "--colorBtnCard": darkBlueColor,
-        "&:hover": {
-          backgroundColor: darkBlueColor,
-          color: "white",
-          "--colorBtnCard": orangeColor,
+        "@media (hover: hover)": {
+          "&:hover": {
+            backgroundColor: darkBlueColor,
+            color: "white",
+            "--colorBtnCard": orangeColor,
+          },
         },
       }}
     >
@@ -72,6 +74,7 @@ function ProductCard({
             alt={name}
             image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}${pictures[0].urlMiniature}`}
             sx={{ width: "150px", height: "150px", objectFit: "contain" }}
+            draggable={false}
           />
         </Box>
         <Box sx={{ alignSelf: "flex-start" }}>

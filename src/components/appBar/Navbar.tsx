@@ -17,6 +17,7 @@ import SearchBar from "./SearchBar";
 import { useMutation } from "@apollo/client";
 import { useUserContext } from "@/context/UserContext";
 import { mutationSignOut } from "@/graphql/user/mutationSignOut";
+// import { logo } from "@/../public/images/renthub-logo.svg";
 
 function Navbar(): React.ReactNode {
   const [query, setQuery] = React.useState<string>("");
@@ -76,7 +77,7 @@ function Navbar(): React.ReactNode {
             >
               <CardMedia
                 component="img"
-                image={"/images/renthub-logo.png"}
+                image={"/renthub-logo.svg"}
                 alt="Renthub Logo"
                 sx={{
                   width: 201,
@@ -118,7 +119,7 @@ function Navbar(): React.ReactNode {
             >
               <CardMedia
                 component="img"
-                image={"/images/favicon.png"}
+                image="/renthub-logo-mini.svg"
                 alt="Renthub Logo"
                 sx={{
                   width: 40,
@@ -148,7 +149,7 @@ function Navbar(): React.ReactNode {
             <SearchBar
               backgroundColor="white"
               borderColor="white"
-              colorText="orange"
+              colorText={"#777777"}
               query={query}
               setQuery={setQuery}
             />

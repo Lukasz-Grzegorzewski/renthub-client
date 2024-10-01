@@ -1,9 +1,9 @@
-import { Box, Typography } from "@mui/material";
-import Carousel from "react-multi-carousel";
+import { Box, Typography, useMediaQuery } from "@mui/material";
+// import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import type TestimonialCardPropsType from "@/types/TestimonialsTypes";
-import CardsTestimials from "@/components/cards/TestimonialsCard";
+import Carousel from "../utils/carousel/Carousel";
 
 const testimonialCards: TestimonialCardPropsType[] = [
   {
@@ -52,42 +52,10 @@ const testimonialCards: TestimonialCardPropsType[] = [
 ];
 
 function Testimonials() {
-  const responsive = {
-    varyLargeDesktop: {
-      breakpoint: { max: 4000, min: 1500 },
-      items: 3,
-      partialVisibilityGutter: 80,
-    },
-    largeDesktop: {
-      breakpoint: { max: 1499, min: 1200 },
-      items: 2,
-      partialVisibilityGutter: 80,
-    },
-    desktop: {
-      breakpoint: { max: 1199, min: 801 },
-      items: 2,
-    },
-    tablet: {
-      breakpoint: { max: 800, min: 745 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 744, min: 650 },
-      items: 1,
-      partialVisibilityGutter: 180,
-    },
-    small: {
-      breakpoint: { max: 649, min: 500 },
-      items: 1,
-      partialVisibilityGutter: 100,
-    },
-    extraSmall: {
-      breakpoint: { max: 499, min: 0 },
-      items: 1,
-    },
-  };
+  const matche500 = useMediaQuery("(max-width:500px)");
+
   return (
-    <div className="testimonials-container">
+    <Box className="testimonials-container">
       <Typography
         variant="h4"
         component="h2"
@@ -114,19 +82,7 @@ function Testimonials() {
           justifyContent: "center",
         }}
       >
-        <Carousel
-          responsive={responsive}
-          infinite
-          showDots={false}
-          autoPlay={true}
-          partialVisible={true}
-          keyBoardControl={true}
-          containerClass={"testimonials-carousel"}
-        >
-          {testimonialCards?.map((card) => (
-            <CardsTestimials card={card} key={card.id} />
-          ))}
-        </Carousel>
+        <Carousel type="Testimonials" testimonialCards={testimonialCards} />
 
         <Box
           sx={{
@@ -143,7 +99,7 @@ function Testimonials() {
           </OrangeBtnWhiteHover>
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 }
 
